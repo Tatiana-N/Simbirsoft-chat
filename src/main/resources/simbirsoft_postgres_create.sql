@@ -2,9 +2,7 @@ CREATE TABLE users
 (
     id       int primary key auto_increment,
     login    VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role_id  integer      NOT NULL
-
+    password VARCHAR(255) NOT NULL
 );
 
 

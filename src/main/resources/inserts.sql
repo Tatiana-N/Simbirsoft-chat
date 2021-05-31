@@ -10,9 +10,9 @@ values ('create room'),
        ('add user'),
        ('delete user'),
        ('rename room');
-insert into ROLES (name)
-values ('user'),
-       ('moderator'),
+insert into ROLES (id,name)
+values (1,'user'),
+       (2,'moderator');
        ('administrator'),
        ('blocked_user'),
        ('room owner');
