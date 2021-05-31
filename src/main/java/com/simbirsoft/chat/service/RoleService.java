@@ -30,9 +30,12 @@ public class RoleService {
 		Optional<Users> first = userRepo.findAll().stream().filter(t -> t.getLogin().equals(login)).findFirst();
 		Roles byId = roleRepo.findByName(name);
 		ArrayList<Users> objects = new ArrayList<>();
-		objects.add(first.get());
+		Users users = first.get();
+		users.setRoles(byId);
+		objects.add(users);
 		byId.setTenants(objects);
 		roleRepo.flush();
+		userRepo.flush();
 		return first.get();
 	}
 	public List<Users> getAllUsersForRole(String name) {

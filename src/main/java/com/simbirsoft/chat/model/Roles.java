@@ -18,11 +18,14 @@ public class Roles {
 	@Id
 	@GeneratedValue
 	private int id;
+	@Column(unique = true)
 	private String name;
-//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//	@JoinColumn(name = "roles_id")
-//	private List<Users> users = new ArrayList<>();
-@OneToMany
-@JoinColumn	(name = "roles")
-private List<Users> tenants;
+	@OneToMany
+	@JoinColumn(name = "roles")
+	private List<Users> tenants;
+	
+	@Override
+	public String toString() {
+		return "Roles{" + "id=" + id + ", name='" + name + '\'' + ", tenants=" + tenants.getClass() + '}';
+	}
 }
