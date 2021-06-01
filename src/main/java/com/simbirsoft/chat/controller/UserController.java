@@ -25,7 +25,12 @@ public class UserController {
 		userService.createUser(name);
 		return String.format("Юзер %s создан!", name);
 	}
-	
+//	@RequestMapping("/login/{name}/password/{password}")
+//	public String logIn(@PathVariable String name, @PathVariable String password) {
+//		//валидация
+//	//	boolean success = userService.logIn(name, password);
+//	//	return success? String.format("Добро пожаловать, %s!", name) : String.format("Введена неверная комбинация логина и пароля", name) ;
+//	}
 	//удаление юзера
 	@DeleteMapping("delete/{UserName}")
 	public String deleteUser(@PathVariable String UserName) {
