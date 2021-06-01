@@ -14,7 +14,14 @@ public class Login {
 	@ResponseBody
 	public ModelAndView welcome(){
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("index");
+		modelAndView.setViewName("login");
+		return modelAndView;
+	}
+	@RequestMapping("/add")
+	@ResponseBody
+	public ModelAndView add(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("addUser");
 		return modelAndView;
 	}
 }

@@ -4,22 +4,22 @@ import com.simbirsoft.chat.model.Users;
 import com.simbirsoft.chat.service.UserService;
 import com.simbirsoft.chat.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
 	final UserService userService;
 	
 	public UserController(@Autowired UserService userService) {
 		this.userService = userService;
 	}
-	
-	//добавление юзера
-	@RequestMapping("/add/{name}")
+	@RequestMapping("users/add/{name}")
 	public String createUser(@PathVariable String name) {
 		//валидация
 		userService.createUser(name);
@@ -32,7 +32,7 @@ public class UserController {
 //	//	return success? String.format("Добро пожаловать, %s!", name) : String.format("Введена неверная комбинация логина и пароля", name) ;
 //	}
 	//удаление юзера
-	@DeleteMapping("delete/{UserName}")
+	@DeleteMapping("users/delete/{UserName}")
 	public String deleteUser(@PathVariable String UserName) {
 		//валидация
 		Users users = userService.deleteUser(UserName);
@@ -41,7 +41,7 @@ public class UserController {
 	
 	
 	//получение всех юзеров
-	@RequestMapping("/getAllUsers")
+	@RequestMapping("users/getAllUsers")
 	public String getAll() {
 		//валидация
 		List<Users> allUsersForUser = userService.getAllUsers();
