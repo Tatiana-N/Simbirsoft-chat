@@ -9,20 +9,44 @@
 
 <span style="color:#ffffff"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:28px"><strong><span>Рады снова Вас видеть! </span></strong></span></span></span>
 </pre>
-
-<pre dir="rtl" style="text-align:center">
-
-
-
-
-
-<span style="color:#2980b9"><span style="font-size:26px"><span style="font-family:Tahoma,Geneva,sans-serif"><strong> </strong></span></span><span style="font-size:22px"><span style="font-family:Tahoma,Geneva,sans-serif"><strong>Введите логин </strong></span></span></span><span style="font-size:26px"><span style="font-family:Tahoma,Geneva,sans-serif"><span style="color:#2980b9"><strong> </strong></span><span style="color:#d35400"><strong> </strong></span></span>
-<span style="font-family:Comic Sans MS,cursive"><span style="color:#d35400"><strong><input maxlength="20" name="Login" required="required" size="30" type="text" /> 
-
-</strong></span></span></span><span style="color:#2980b9"><span style="font-size:22px"><span style="font-family:Tahoma,Geneva,sans-serif"><strong><span dir="rtl">Введите пароль</span></strong></span></span></span>
-<span style="font-size:26px"><span style="font-family:Comic Sans MS,cursive"><span style="color:#d35400"><strong><input maxlength="20" name="password" required="required" size="30" type="password" /></strong></span></span></span>
-<p><span style="font-size:26px"><span style="font-family:Comic Sans MS,cursive"><span style="color:#d35400"><strong></strong></span></span></span></p>
-   <p><input type="button"  value=" Зарегистрироваться "></p>
-</pre>
+<div id="wrapper">
+	<form id="signin" method="" action="chat" autocomplete="off" style="text-align:center">
+<span style="color:#2980b9"><span style="font-size:26px"><span style="font-family:Tahoma,Geneva,sans-serif"><strong>
+	Введите логин
+<span style="font-family:Comic Sans MS,cursive"><span style="color:#d35400"><strong>
+	<input maxlength="50" name="Login" required="required" size="30" type="text"/>
+	Введите пароль
+	<input maxlength="20" name="password" required="required" size="30" type="password"/>
+	<button type="">Войти</button>
+</strong></span></span></span></span></span>
+	</form>
+	<?php
+//проверяем, существуют ли переменные в массиве POST
+if(!isset($_POST['fio']) and !isset($_POST['email'])){
+ ?>
+	<form action="/chat" method="get">
+		<input type="text" name="fio" placeholder="Укажите ФИО" required>
+		<input type="text" name="email" placeholder="Укажите e-mail" required>
+		<input type="submit" value="Отправить">
+	</form>
+	<?php
+} else {
+ //показываем форму
+ $fio = $_POST['fio'];
+ $email = $_POST['email'];
+ $fio = htmlspecialchars($fio);
+ $email = htmlspecialchars($email);
+ $fio = urldecode($fio);
+ $email = urldecode($email);
+ $fio = trim($fio);
+ $email = trim($email);
+ if (mail("t.a.nikolaeva@bk.ru", "Заявка с сайта", "ФИО:".$fio.". E-mail: ".$email ,"From: example2@mail.ru \r\n")){
+ echo "Сообщение успешно отправлено";
+ } else {
+ echo "При отправке сообщения возникли ошибки";
+ }
+}
+?>
+</div>
 </body>
 </html>

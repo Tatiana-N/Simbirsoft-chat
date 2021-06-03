@@ -4,7 +4,6 @@ import com.simbirsoft.chat.model.Users;
 import com.simbirsoft.chat.service.UserService;
 import com.simbirsoft.chat.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,13 +18,15 @@ public class UserController {
 	public UserController(@Autowired UserService userService) {
 		this.userService = userService;
 	}
+	
 	@RequestMapping("users/add/{name}")
 	public String createUser(@PathVariable String name) {
 		//валидация
 		userService.createUser(name);
 		return String.format("Юзер %s создан!", name);
 	}
-//	@RequestMapping("/login/{name}/password/{password}")
+	
+	//	@RequestMapping("/login/{name}/password/{password}")
 //	public String logIn(@PathVariable String name, @PathVariable String password) {
 //		//валидация
 //	//	boolean success = userService.logIn(name, password);
@@ -39,6 +40,20 @@ public class UserController {
 		return String.format("Юзер %s удалён!", users.getLogin());
 	}
 	
+	@RequestMapping("/add")
+	@ResponseBody
+	public ModelAndView add() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("add");
+		return modelAndView;
+	}
+	
+	@GetMapping("/chat")
+	@ResponseBody
+	public String login(@PathVariable String Login, @PathVariable String password) {
+		
+		return "user";
+	}
 	
 	//получение всех юзеров
 	@RequestMapping("users/getAllUsers")
